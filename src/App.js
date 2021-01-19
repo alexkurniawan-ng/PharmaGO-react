@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { NavbarCom } from './components';
+import { getProducts } from './actions';
 
-function App() {
+import { Home, SearchResult } from './pages';
+import { useDispatch } from 'react-redux';
+
+const App = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavbarCom />
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/search' component={SearchResult} />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
