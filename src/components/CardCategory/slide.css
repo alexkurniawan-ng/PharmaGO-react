@@ -1,0 +1,42 @@
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+.slides .slick-prev,
+.slides .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+}
+
+.slides {
+  position: relative;
+}
+
+.slides .slick-next {
+  right: -3%;
+}
+.slides .slick-prev {
+  left: -3%;
+}
+
+.slides .slick-prev:before,
+.slides .slick-next:before {
+  color: black;
+  font-size: 25px;
+}
+
+.slides .slick-slide {
+  background-color: rgb(205, 204, 207);
+  border-radius: 20px;
+  margin: 2px;
+  box-sizing: content-box;
+  padding: 10px 0;
+}
+
+.slides .slick-slide:hover {
+  cursor: pointer;
+}
+
+.slides .slick-slide img {
+  margin: auto;
+}

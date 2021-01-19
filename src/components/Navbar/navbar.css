@@ -1,0 +1,44 @@
+.image {
+  width: 10rem;
+}
+
+.search_icon {
+  position: absolute;
+  top: 1vh;
+  right: 3vh;
+}
+
+.right-menu {
+  justify-content: center;
+}
+
+.right-menu_ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.right-menu_icon {
+  font-size: 30;
+  color: rgb(87, 82, 82);
+}
+
+.right-menu_icon:hover {
+  color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .image {
+    width: 7rem;
+  }
+
+  .right-menu_icon {
+    display: none;
+  }
+  input.form-control,
+  .search_icon {
+    display: none;
+  }
+}
