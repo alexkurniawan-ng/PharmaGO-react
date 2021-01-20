@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-    products: []
+    products: [],
+    detailProduct: []
 }
 
 
@@ -10,6 +11,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 products: action.payload
+            }
+        case "GET_DETAIL":
+            console.log('productsReducer.js GET_DETAIL: ', action.payload)
+            return {
+                ...state,
+                detailProduct: action.payload
             }
     
         default:

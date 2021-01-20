@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../redux/actions/productsAction';
+import { getDetail, getProducts } from '../redux/actions/productsAction';
 import { Alert, Button, Card, CardBody, CardImg, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane, UncontrolledTooltip } from 'reactstrap';
 import classnames from 'classnames';
 
 const ProductDetail = (props) => {
-    // console.log("Detail.js params detail product: ", props.route.params.detail)
+    console.log(props.location.search) //?idproduct=1
+    // const txt = props.location.search
+    // const num = txt.replace(/[^0-9]/g,'')
+    // console.log(num)
     const [qtyCart, setQtyCart] = useState(1);
     const [visible, setVisible] = useState(false);
     const onDismiss = () => setVisible(false);
-
+    
 
     // DEVELOPMENT MODE => NANTI DIHAPUS
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getProducts())
+        dispatch(getDetail(props.location.search))
     }, [])
-    const { products } = useSelector(state => {
+
+    const { detailProduct } = useSelector(state => {
         return {
-            products: state.ProductsReducer.products
+            detailProduct: state.ProductsReducer.detailProduct
         }
     })
+    // console.log(detailProduct)
     // -----------------------------------
 
     // Tab Function
@@ -33,9 +38,9 @@ const ProductDetail = (props) => {
     // Quantity to Cart Function
     const btQtyCart = (value) => {
         if (value == '+') {
-            if (qtyCart < products[0].stock) {
+            if (qtyCart < detailProduct[0].stock) {
                 setQtyCart(qtyCart + 1)
-            } else if (qtyCart == products[0].stock) {
+            } else if (qtyCart == detailProduct[0].stock) {
                 setVisible(true)
             }
         } else if (value == '-') {
@@ -59,15 +64,15 @@ const ProductDetail = (props) => {
     return (
         <Container>
             <div className='ml-3'>
-                <h3>{products[1].name}</h3>
-                <p>Rp. {products[1].price.toLocaleString()},- / kemasan</p>
+                <h3>{detailProduct[0].name}</h3>
+                <p>Rp. {detailProduct[0].price.toLocaleString()},- / kemasan</p>
             </div>
             <Row>
                 <Col md={6} >
                     <div className="card-tranparent">
                         <CardBody style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Card className='shadow' style={{ borderRadius: 20, overflow: 'auto' }}>
-                                <CardImg top width='100%' src={products[1].product_image} />
+                                <CardImg top width='100%' src={detailProduct[0].product_image} />
                             </Card>
                             <div className="card-tranparent" style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
                                 <Button color='warning' style={{ marginTop: 15, borderRadius: 15, width: 30, height: 30, letterSpacing: 2, textAlign: 'center' }} onClick={() => btQtyCart('-')}><p style={{ marginLeft: -3, marginTop: -14, fontWeight: 'bolder', fontSize: 25 }}>-</p></Button>
@@ -106,19 +111,19 @@ const ProductDetail = (props) => {
                             <Row>
                                 <Col sm={12}>
                                     <h6 style={{ marginTop: 15 }}>Indikasi Umum</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_umum}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_umum}</p>
 
                                     <h6 style={{ marginTop: 15 }}>Deskripsi</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_indikasi}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_indikasi}</p>
 
                                     <h6 style={{ marginTop: 15 }}>Kontra Indikasi</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_kontraindikasi}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_kontraindikasi}</p>
 
                                     <h6 style={{ marginTop: 15 }}>Efek Samping</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_efeksamping}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_efeksamping}</p>
 
                                     <h6 style={{ marginTop: 15 }}>Perhatian</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_perhatian}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_perhatian}</p>
                                 </Col>
                             </Row>
                         </TabPane>
@@ -126,13 +131,13 @@ const ProductDetail = (props) => {
                             <Row>
                                 <Col sm={12}>
                                     <h6 style={{ marginTop: 15 }}>Komposisi</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_komposisi}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_komposisi}</p>
 
                                     <h6 style={{ marginTop: 15 }}>Dosis</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_dosis}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_dosis}</p>
 
                                     <h6 style={{ marginTop: 15 }}>Aturan Pakai</h6>
-                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{products[1].desc_aturanpakai}</p>
+                                    <p style={{ fontSize: 13, marginTop: -7, textAlign: 'justify', fontWeight: '100' }}>{detailProduct[0].desc_aturanpakai}</p>
                                 </Col>
                             </Row>
                         </TabPane>
