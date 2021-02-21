@@ -15,7 +15,11 @@ This is my first website that I developed using React JS. An e-commerce website 
 !["quickbuy"](imgreadme/quickbuy.JPG)
 !["cartPreview"](imgreadme/cartpreview.JPG)
 
-
+### Admin Page
+!["Dashboard"](imgreadme/AdminHome.JPG)
+!["Dashboard2"](imgreadme/AdminHome2.JPG)
+!["MasterProduct"](imgreadme/MasterProduct.JPG)
+!["AddProduct"](imgreadme/AddProduct.JPG)
 
 ### Library Used (Front End)
 - [Reactstrap](https://reactstrap.github.io/) for layouting and make some component.
