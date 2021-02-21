@@ -9,7 +9,7 @@ This is my first website that I developed using React JS. An e-commerce website 
 !["payment"](imgreadme/confirmpay.JPG)
 
 ### Features 
-!["register"](imgreadme/register.JPG)
+!["register"](imgreadme/Register.JPG)
 !["verification"](imgreadme/verification.JPG)
 !["search"](imgreadme/search.JPG)
 !["quickbuy"](imgreadme/quickbuy.JPG)
